@@ -1,0 +1,126 @@
+package com.example.sample;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.TextView;
+
+public class MainActivity extends Activity implements OnClickListener {
+
+	//計算用変数   
+    int buffer = 0;
+    //計算フラグ (1 = + /2 = - /3 = ×)
+    int flag = 0;
+    
+	
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+    	
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+        //初期化
+        Button button1 = (Button)findViewById(R.id.widget0);
+        Button button2 = (Button)findViewById(R.id.widget1);
+        Button button3 = (Button)findViewById(R.id.widgetPlus);
+        Button button4 = (Button)findViewById(R.id.widgetEqual);
+        Button button5 = (Button)findViewById(R.id.widgetC);
+        Button button6 = (Button)findViewById(R.id.widgetMinas);
+        Button button7 = (Button)findViewById(R.id.widgetX);
+        Button button8 = (Button)findViewById(R.id.widget2);
+        Button button9 = (Button)findViewById(R.id.widget3);
+        Button button10 = (Button)findViewById(R.id.widget4);
+        Button button11 = (Button)findViewById(R.id.widget5);
+        Button button12 = (Button)findViewById(R.id.widget6);
+        Button button13 = (Button)findViewById(R.id.widget7);
+        Button button14 = (Button)findViewById(R.id.widget8);
+        Button button15 = (Button)findViewById(R.id.widget9);
+        
+        //実装
+        button1.setOnClickListener(this);
+        button2.setOnClickListener(this);
+        button3.setOnClickListener(this);
+        button4.setOnClickListener(this);
+        button5.setOnClickListener(this);
+        button6.setOnClickListener(this);
+        button7.setOnClickListener(this);
+        button8.setOnClickListener(this);
+        button9.setOnClickListener(this);
+        button10.setOnClickListener(this);
+        button11.setOnClickListener(this);
+        button12.setOnClickListener(this);
+        button13.setOnClickListener(this);
+        button14.setOnClickListener(this);
+        button15.setOnClickListener(this);
+
+        
+        
+    }
+    
+    //計算時のErrorフラグ管理メソッド
+    public void flag(){
+    	//未実装
+    	
+    }
+    
+	@Override
+	public void onClick(View v) {
+		
+		TextView textForm = (TextView)findViewById(R.id.widgetText);
+
+		// idを取得し、どのボタンが押されたかを判断して処理を振り分ける
+		switch(v.getId()) {
+		case R.id.widgetPlus:
+			// プラスが押された時の処理			
+			break;
+			
+		case R.id.widgetMinas:
+			// マイナスが押された時の処理			
+			break;
+		case R.id.widgetEqual:
+			// イコールが押された時の処理	
+			textForm.setText(String.valueOf(buffer+Integer.parseInt(textForm.getText().toString())));		
+			
+			/*
+			case 2:
+				textForm.setText(String.valueOf(buffer-Integer.parseInt(textForm.getText().toString())));		
+			break;
+			
+			case 3:
+				textForm.setText(String.valueOf(buffer*Integer.parseInt(textForm.getText().toString())));		
+			}
+			*/
+			
+			
+		
+		case R.id.widgetC:
+			//クリアが押された時の処理
+			textForm.setText("");
+			buffer = 0;
+			
+			
+			
+			break;
+		default:
+			Button button = (Button)findViewById(v.getId());
+			TextView textview = (TextView)findViewById(R.id.widgetText);
+			// buttonから文字列を取得し、textviewのテキストに文字列を追加
+			textview.append(button.getText());
+		}
+	}
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+
+
+    
+}

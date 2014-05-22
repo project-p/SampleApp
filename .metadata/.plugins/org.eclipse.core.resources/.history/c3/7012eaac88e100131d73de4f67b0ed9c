@@ -1,0 +1,91 @@
+package com.example.sample;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.TextView;
+
+public class MainActivity extends Activity implements OnClickListener {
+
+	//計算用変数   
+    int buffer = 0;
+    
+	
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+    	
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+        //初期化
+        Button button1 = (Button)findViewById(R.id.widget0);
+        Button button2 = (Button)findViewById(R.id.widget1);
+        Button button3 = (Button)findViewById(R.id.widgetPlus);
+        Button button4 = (Button)findViewById(R.id.widgetEqual);
+        
+        //実装
+        button1.setOnClickListener(this);
+        button2.setOnClickListener(this);
+        button3.setOnClickListener(this);
+        button4.setOnClickListener(this);
+        
+        
+    }
+    
+    //計算時のErrorフラグ管理メソッド
+    public void flag(){
+    	//未入力
+    	
+    }
+    
+	@Override
+	public void onClick(View v) {
+		
+		TextView textForm = (TextView)findViewById(R.id.widgetText);
+
+		// idを取得し、どのボタンが押されたかを判断して処理を振り分ける
+		switch(v.getId()) {
+		case R.id.widgetPlus:
+			// プラスが押された時の処理
+			flag();
+			
+			buffer = Integer.parseInt(textForm.getText().toString());
+			textForm.setText("");
+			
+			
+			
+			break;
+		case R.id.widgetMinas:
+			// マイナスが押された時の処理
+			
+			break;
+		case R.id.widgetEqual:
+			// イコールが押された時の処理	
+			
+			textForm.setText(String.valueOf(buffer+Integer.parseInt(textForm.getText().toString())));
+			
+			
+			break;
+		default:
+			Button button = (Button)findViewById(v.getId());
+			TextView textview = (TextView)findViewById(R.id.widgetText);
+			// buttonから文字列を取得し、textviewのテキストに文字列を追加
+			textview.append(button.getText());
+		}
+	}
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+
+
+    
+}
